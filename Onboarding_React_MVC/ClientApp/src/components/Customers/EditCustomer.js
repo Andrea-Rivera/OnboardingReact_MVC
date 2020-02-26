@@ -15,25 +15,28 @@ export class EditCustomer extends Component {
 
     updateCustomer = (id, customerName, customerAddress) => this.setState({ name: customerName, customerId: id, address: customerAddress, editModalOpen: true })
    
-    handleSubmit() {
   
-    
-        alert(this.state.name + this.state.address + this.state.customerId);
+    handleSubmit(id) {
 
-        fetch('https//localhost:44328/api/customers' , {
 
-    method: 'PUT',
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        "id": this.state.name,
-        "name": this.state.address,
-        "address": this.state.customerId
-    })
-})
-    .then(res => res.json())
+        console.log(this.state.name + this.state.address + this.state.customerId);
+
+     
+
+        fetch('https//localhost:44328/api/customers/EditCustomer/'+id, {
+
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "id": this.state.name,
+                "name": this.state.address,
+                "address": this.state.customerId
+            })
+        })
+            .then(res => res.json())
             .then((result) => {
                 alert('Customer updated successfully!');
             },
@@ -42,9 +45,8 @@ export class EditCustomer extends Component {
                     alert('Failed')
                 }
             )
-    
-    }
 
+    }
        
     
     state = { editModal: false }
@@ -64,7 +66,7 @@ export class EditCustomer extends Component {
                     <Modal.Header >Edit Customer</Modal.Header>
                     <Modal.Content>
                         <div className="container">
-                            <Form onSubmit={this.handleSubmit}>
+                            <Form onSubmit={() => this.handleSubmit(this.props.customerId)}>
                                 <Form.Group controlid="id">  
                                     <Form.Field >
                                         <label>Id</label>

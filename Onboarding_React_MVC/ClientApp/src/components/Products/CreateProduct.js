@@ -25,7 +25,7 @@ export class CreateProduct extends Component {
             body: JSON.stringify({
 
                 name: event.target.name.value,
-               // price: event.target.price.value
+               price: event.target.price.value
             
                  
             })
@@ -63,7 +63,7 @@ export class CreateProduct extends Component {
                               
                                     <Form.Field>
                                         <label>Product Price</label>
-                                        <input placeholder=' Product Price' name="price" required />
+                                    <input placeholder=' Product Price' name="price"  required />
                                     </Form.Field>
                               
                                 
