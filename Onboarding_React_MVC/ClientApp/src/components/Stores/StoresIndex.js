@@ -8,9 +8,10 @@ export class Stores extends Component {
     constructor(props) {
         super(props);
         this.state = { stors: [] };
+       
         /////////////////edit////////////////////////////////////////////
         this.updateStore = this.updateStore.bind(this);
-        this.handleNameChange = this.handleNameChange.bind(this);
+    
         this.handleStoreChanges = this.handleStoreChanges.bind(this);
         ///////////////////////////////////////////////////////////////////
     }
@@ -55,7 +56,7 @@ export class Stores extends Component {
 
     state = { editModalOpen: false }
 
-    handleNameChange = (event) => this.setState({ name: event.target.value })
+
 
     updateStore = (id, saleName, saleAddress) => this.setState({ name: saleName, storeId: id, address: saleAddress, editModalOpen: true })
 
@@ -63,29 +64,34 @@ export class Stores extends Component {
 
     handleStoreChanges(storeId) {
 
-        console.log("retrieved value: " + this.state.name + " Address : " + this.state.address + " Id : " + this.state.storeId);
 
-        fetch('https://localhost:44328/api/stores' + storeId, {
+        console.log(this.state.name + this.state.address + this.state.customerId);
+
+
+
+        fetch('https//localhost:44328/api/customers/' + storeId, {
+
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                Id: this.state.saleId,
-                name: this.state.name,
-                address: this.state.address
+                "id": this.state.name,
+                "name": this.state.address,
+                "address": this.state.customerId
             })
         })
             .then(res => res.json())
             .then((result) => {
-                alert('Stores added successfully!');
+                alert('Customer updated successfully!');
             },
                 (error) => {
 
                     alert('Failed')
                 }
             )
+
     }
         
     
@@ -130,7 +136,7 @@ export class Stores extends Component {
                                             right: "auto"
                                         }}>
                                 
-                                        <input type="text" name="name" value={this.state.name} onChange={this.handleNameChange} />
+                                        <input type="text" name="name" value={this.state.name} onChange={(event) => this.setState({ name: event.target.value })} />
 
                                         <Button color="olive" onClick={() => this.handleStoreChanges(stor.id)}><Icon name='check' />Update</Button>
                                         <Button onClick={() => this.setState({ editModalOpen: false })} > Close</Button>
@@ -139,7 +145,7 @@ export class Stores extends Component {
 
                                 </Table.Cell>
                                 <Table.Cell>
-                                    < Button className="mr-2" color="red" onClick={() => this.deleteStore(stor.id)}><Icon name='trash' />Delete</Button>
+                                    < Button className="mr-2" color="red" onClick={() => this.deleteStore(stor.id)}><Icon name='trash'/>Delete</Button>
                                   
 
                                 </Table.Cell>

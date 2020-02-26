@@ -31,9 +31,9 @@ export class EditCustomer extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "id": this.state.name,
-                "name": this.state.address,
-                "address": this.state.customerId
+                "id": this.state.customerId,
+                "name": this.state.name,
+                "address": this.state.address
             })
         })
             .then(res => res.json())

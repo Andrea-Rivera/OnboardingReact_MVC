@@ -8,15 +8,18 @@ export class CreateProduct extends Component {
         super(props);
         this.state = {
             name: '',
-            price: null,
+            price: 0,
         };
+      
+        
+        
     }
 
 
     handleSubmit(event) {
         event.preventDefault();
-        //alert(event.target.name.value + event.target.price.value);
-        fetch('https://localhost:44328/api/products', {
+        alert(event.target.name.value + event.target.price.value )
+        fetch('https://localhost:44328/api/customers', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -25,13 +28,19 @@ export class CreateProduct extends Component {
             body: JSON.stringify({
 
                 name: event.target.name.value,
-               price: event.target.price.value
-            
-                 
+                price: event.target.price.value
             })
         })
             .then(res => res.json())
-    }        
+            .then((result) => {
+                alert('Customer added successfully!');
+            },
+                (error) => {
+
+                    alert('Failed')
+                }
+            )
+    }
 
     state = { showModal: false }
 
@@ -56,14 +65,14 @@ export class CreateProduct extends Component {
 
                                     <Form.Field >
                                         <label>Product Name</label>
-                                        <input placeholder='Product Name' name="name" required />
+                                    <input placeholder='Customer Name' name="name" required />
                                     </Form.Field>
                               
 
                               
                                     <Form.Field>
                                         <label>Product Price</label>
-                                    <input placeholder=' Product Price' name="price"  required />
+                                    <input placeholder='Customer Price' name="price" required />
                                     </Form.Field>
                               
                                 
