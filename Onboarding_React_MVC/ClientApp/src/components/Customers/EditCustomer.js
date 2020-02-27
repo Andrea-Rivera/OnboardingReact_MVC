@@ -1,15 +1,12 @@
 ﻿import React, { Component } from 'react';
 import { Modal, Button, Form, Icon } from 'semantic-ui-react';
 
-
-
-
 export class EditCustomer extends Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.updateCustomer = this.updateCustomer.bind(this);
-
+       
         this.state = { id: this.props.customerId, name: this.props.customerName, address: this.props.customerAddress };
     }
 
@@ -21,9 +18,7 @@ export class EditCustomer extends Component {
 
         console.log(this.state.name + this.state.address + this.state.customerId);
 
-     
-
-        fetch('https//localhost:44328/api/customers/EditCustomer/'+id, {
+        fetch('https//localhost:44328/api/customers/'+id, {
 
             method: 'PUT',
             headers: {
@@ -70,14 +65,14 @@ export class EditCustomer extends Component {
                                 <Form.Group controlid="id">  
                                     <Form.Field >
                                         <label>Id</label>
-                                        <input type="text" name="id" value={this.state.id} onChange={(event) => this.setState({ id: event.target.value })} disabled />
+                                        <input type="text" name="id"  value={this.state.id} onChange={(event) => this.setState({ id: event.target.value })} disabled />
                                     </Form.Field>      
                                 </Form.Group>
                                 <Form.Group controlid="name">
                                     <Form.Field >
                                         <label>Name</label>
 
-                                        <input type="text" name="name" value={this.state.name} onChange={(event) => this.setState({ name: event.target.value })}  />
+                                        <input type="text" name="name" value={this.state.name} onChange={(event) => this.setState({ name: event.target.value })} disabled />
                                         
                                     </Form.Field>
                                 </Form.Group>

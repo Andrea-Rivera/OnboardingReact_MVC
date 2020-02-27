@@ -40,12 +40,12 @@ namespace Onboarding_React_MVC.Models
             {
                 entity.Property(e => e.Name).HasMaxLength(255);
 
-                entity.Property(e => e.Price).HasColumnType("decimal(10, 0)");
+                entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
             });
 
             modelBuilder.Entity<Sales>(entity =>
             {
-                entity.Property(e => e.DateSold).HasColumnType("date");
+                entity.Property(e => e.DateSold).HasColumnType("DateTime");
 
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.Sales)

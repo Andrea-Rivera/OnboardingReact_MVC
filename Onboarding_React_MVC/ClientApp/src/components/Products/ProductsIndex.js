@@ -89,14 +89,13 @@ export class Products extends Component {
 
                     </Table.Body>
                 </Table>
-
                 <Button.Group >
                     <CreateProduct
                         show={this.state.showModal}
                         onClose={closeModal}
                     />
                 </Button.Group>
-
+               
 
 
             </div>
@@ -105,3 +104,6 @@ export class Products extends Component {
 
     }
 }
+
+
+

@@ -83,10 +83,11 @@ namespace Onboarding_React_MVC.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetSales", new { id = sales.Id }, sales);
+          
         }
 
         // DELETE: api/Sales/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{ id}")]
         public async Task<ActionResult<Sales>> DeleteSales(int id)
         {
             var sales = await _context.Sales.FindAsync(id);

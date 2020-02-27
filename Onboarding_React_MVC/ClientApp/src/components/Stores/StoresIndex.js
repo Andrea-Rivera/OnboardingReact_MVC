@@ -1,7 +1,8 @@
 ﻿import React, { Component } from 'react';
 import { Table } from 'semantic-ui-react';
 import { Button, Icon,Modal} from 'semantic-ui-react';
-import { CreateStores} from './CreateStores';
+import { CreateStores } from './CreateStores';
+import { EditStores } from './EditStores';
 
 export class Stores extends Component {
 
@@ -10,9 +11,9 @@ export class Stores extends Component {
         this.state = { stors: [] };
        
         /////////////////edit////////////////////////////////////////////
-        this.updateStore = this.updateStore.bind(this);
+        //this.updateStore = this.updateStore.bind(this);
     
-        this.handleStoreChanges = this.handleStoreChanges.bind(this);
+        //this.handleStoreChanges = this.handleStoreChanges.bind(this);
         ///////////////////////////////////////////////////////////////////
     }
 
@@ -54,53 +55,54 @@ export class Stores extends Component {
     }
     ////////////////////EDIT/////////////////////////////////////
 
-    state = { editModalOpen: false }
+    //state = { editModalOpen: false }
 
 
 
-    updateStore = (id, saleName, saleAddress) => this.setState({ name: saleName, storeId: id, address: saleAddress, editModalOpen: true })
+    //updateStore = (id, saleName) => this.setState({ name: saleName, storeId: id, editModalOpen: true })
 
     
 
-    handleStoreChanges(storeId) {
+    //handleStoreChanges(storeId) {
 
 
-        console.log(this.state.name + this.state.address + this.state.customerId);
+    //    console.log(this.state.name  + this.state.customerId);
 
 
 
-        fetch('https//localhost:44328/api/customers/' + storeId, {
+    //    fetch('https//localhost:44328/api/customers/' + storeId, {
 
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "id": this.state.name,
-                "name": this.state.address,
-                "address": this.state.customerId
-            })
-        })
-            .then(res => res.json())
-            .then((result) => {
-                alert('Customer updated successfully!');
-            },
-                (error) => {
+    //        method: 'PUT',
+    //        headers: {
+    //            'Accept': 'application/json',
+                
+    //        },
+    //        body: JSON.stringify({
+    //            "id": this.state.id,
+    //            "name": this.state.name,
+              
+    //        })
+    //    })
+    //        .then(res => res.json())
+    //        .then((result) => {
+    //            alert('Customer updated successfully!');
+    //        },
+    //            (error) => {
 
-                    alert('Failed')
-                }
-            )
+    //                alert('Failed')
+    //            }
+    //        )
 
-    }
+    //}
         
     
 
     ////////////////////////////////////////////////////////////////
     render() {
         const { editModalOpen } = this.state;
-        const { stors } = this.state;
+        const { stors, storeId, storeName, storeAddress } = this.state;
         let closeModal = () => this.setState({ editModalOpen: false });
+        let closeEditModal = () => this.setState({ showEditModal:false});
     
         return (
             <div>
@@ -125,23 +127,16 @@ export class Stores extends Component {
                                 <Table.Cell>{stor.name}</Table.Cell>
                                 <Table.Cell>{stor.address}</Table.Cell>
                                 <Table.Cell>
-                                    <Modal trigger={<Button onClick={() => this.setState({ editModalOpen: true })} color='olive' ><Icon name='edit' />Edit</Button>} open={this.state.editModalOpen}
-                                        onOpen={() => this.updateStore(stor.id, stor.name, stor.address)}
+                                    <Button.Group>
+                                        <EditStores
+                                            show={this.state.showEditModal}
+                                            onClose={closeEditModal}
 
-                                        style={{
-                                            height: "auto",
-                                            top: "auto",
-                                            left: "auto",
-                                            bottom: "auto",
-                                            right: "auto"
-                                        }}>
-                                
-                                        <input type="text" name="name" value={this.state.name} onChange={(event) => this.setState({ name: event.target.value })} />
-
-                                        <Button color="olive" onClick={() => this.handleStoreChanges(stor.id)}><Icon name='check' />Update</Button>
-                                        <Button onClick={() => this.setState({ editModalOpen: false })} > Close</Button>
-                                
-                                    </Modal>
+                                            storeId={stor.id}
+                                            storeName={stor.name}
+                                            storeAddress={stor.address}
+                                        />
+                                    </Button.Group>
 
                                 </Table.Cell>
                                 <Table.Cell>
@@ -170,3 +165,20 @@ export class Stores extends Component {
     }
 }
 
+                                    //<Modal trigger={<Button onClick={() => this.setState({ editModalOpen: true })} color='olive' ><Icon name='edit' />Edit</Button>} open={this.state.editModalOpen}
+                                    //    onOpen={() => this.updateStore(stor.id, stor.name, stor.address)}
+
+                                    //    style={{
+                                    //        height: "auto",
+                                    //        top: "auto",
+                                    //        left: "auto",
+                                    //        bottom: "auto",
+                                    //        right: "auto"
+                                    //    }}>
+
+                                    //    <input type="text" name="name" value={this.state.name} onChange={(event) => this.setState({ name: event.target.value })} />
+
+                                    //    <Button color="olive" onClick={() => this.handleStoreChanges(stor.id)}><Icon name='check' />Update</Button>
+                                    //    <Button onClick={() => this.setState({ editModalOpen: false })} > Close</Button>
+
+                                    //</Modal>

@@ -71,6 +71,7 @@ export class Sales extends Component {
                             <Table.HeaderCell>Customer</Table.HeaderCell>
                             <Table.HeaderCell>Product</Table.HeaderCell>
                             <Table.HeaderCell>Store</Table.HeaderCell>
+                            <Table.HeaderCell>Actions</Table.HeaderCell>
                            
                         </Table.Row>
                     </Table.Header>
@@ -82,6 +83,9 @@ export class Sales extends Component {
                                 <Table.Cell>{sale.customerId}</Table.Cell>
                                 <Table.Cell>{sale.productId}</Table.Cell>
                                 <Table.Cell>{sale.storeId}</Table.Cell>
+                                <Table.Cell>
+                                    < Button className="mr-2" color="red" onClick={() => this.deleteCustomer(sale.id)}><Icon name='trash' />Delete</Button>
+                                </Table.Cell>
                                 
                             </Table.Row>
                         )}

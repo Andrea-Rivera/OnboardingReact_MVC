@@ -6,20 +6,16 @@ import { Modal, Button, Form } from 'semantic-ui-react';
 export class CreateProduct extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            name: '',
-            price: 0,
-        };
-      
-        
-        
+
+        this.state = { priceProduct:null ,name: ""};
+          
     }
 
 
     handleSubmit(event) {
         event.preventDefault();
-        alert(event.target.name.value + event.target.price.value )
-        fetch('https://localhost:44328/api/customers', {
+        alert(event.target.name.value + event.target.priceProduct.value )
+        fetch('https://localhost:44328/api/products', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -27,8 +23,8 @@ export class CreateProduct extends Component {
             },
             body: JSON.stringify({
 
-                name: event.target.name.value,
-                price: event.target.price.value
+                "name": event.target.name.value,
+                "priceProduct": event.target.priceProduct.value
             })
         })
             .then(res => res.json())
@@ -65,17 +61,14 @@ export class CreateProduct extends Component {
 
                                     <Form.Field >
                                         <label>Product Name</label>
-                                    <input placeholder='Customer Name' name="name" required />
+                                    <input placeholder='Product Name' name="name" required />
                                     </Form.Field>
-                              
-
                               
                                     <Form.Field>
                                         <label>Product Price</label>
-                                    <input placeholder='Customer Price' name="price" required />
+                                    <input placeholder='Product Price' name="priceProduct" required />
                                     </Form.Field>
                               
-                                
                                     <Form.Field>
                                         <Button type='submit' primary>Add  Product Details</Button>
                                     </Form.Field>

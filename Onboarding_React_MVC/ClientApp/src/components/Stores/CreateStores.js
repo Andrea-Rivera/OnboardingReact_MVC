@@ -7,6 +7,8 @@ import { Modal, Button, Form } from 'semantic-ui-react';
 export class CreateStores extends Component {
     constructor(props) {
         super(props);
+
+
     }
   
 

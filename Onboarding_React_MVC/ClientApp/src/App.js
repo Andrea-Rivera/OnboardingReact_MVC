@@ -5,6 +5,7 @@ import { Products } from './components/Products/ProductsIndex';
 import { Stores } from './components/Stores/StoresIndex';
 import { Sales } from './components/Sales/SalesIndex';
 import { EditCustomer } from './components/Customers/EditCustomer';
+import { EditStores } from './components/Stores/EditStores';
 
 
 
@@ -35,7 +36,8 @@ class App extends Component {
                         <Route path='/Products' component={Products} exact />
                         <Route path='/Stores' component={Stores} exact />
                         <Route path='/Sales' component={Sales} exact />
-                        <Route path='/EditCustomer/{id}' component={EditCustomer} exact />
+                        <Route path='/EditCustomer/:customerId' component={EditCustomer} exact />
+                        <Route path='/Stores/:storeId' component={EditStores} exact />
                        
                     </Switch>
                 </div>
